@@ -13,10 +13,7 @@ export function middleware(request) {
   // Add the Netlify-Vary header to create separate cache entries
   response.headers.set('Netlify-Vary', 'header=Device-Type');
   
-  const headerEntries = Array.from(response.headers.entries());
-  const headerObject = Object.fromEntries(headerEntries);
-  
-  console.log('Final headers being set:', headerObject);
+  console.log('Final headers being set:', requestHeaders);
   
   return response;
 }
