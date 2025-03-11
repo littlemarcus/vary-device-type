@@ -19,9 +19,6 @@ export function middleware(request) {
     }
   });
   
-  // Set the Netlify-Vary header on the response headers
-  response.headers.set('Netlify-Vary', 'header=Device-Type');
-  
   console.log('Request headers set:', Object.fromEntries(requestHeaders.entries()));
   
   return response;
