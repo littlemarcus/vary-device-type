@@ -45,8 +45,13 @@ export async function getServerSideProps({ req, res }) {
   
   const finalDeviceType = deviceType !== 'unknown' ? deviceType : detectedDeviceType;
   
-  const cacheControl = 'public, s-maxage=1800, stale-while-revalidate=60';
-  res.setHeader('Cache-Control', cacheControl);
+  if (finalDeviceType === 'mobile') {
+    // Cache mobile version for 10 minutes
+    res.setHeader('Cache-Control', 'public, s-maxage=600, stale-while-revalidate=60');
+  } else {
+    // Cache desktop version for 1 hour
+    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=59');
+  }
   
   const apiRes = await fetch('https://dog.ceo/api/breeds/image/random');
   const data = await apiRes.json();
