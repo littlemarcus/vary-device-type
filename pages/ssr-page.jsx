@@ -62,9 +62,9 @@ export async function getServerSideProps({ req, res }) {
       deviceType: finalDeviceType, // Change this line
       dogImageUrl: data.message,
       timestamp,
-      cacheControl: finalDeviceType === 'mobile'  // Change this line
-        ? "no-store, no-cache, must-revalidate, proxy-revalidate"
-        : "public, s-maxage=3600, stale-while-revalidate=59"
+      // cacheControl: finalDeviceType === 'mobile'  // don't mess w/ cache control
+      //   ? "no-store, no-cache, must-revalidate, proxy-revalidate"
+      //   : "public, s-maxage=3600, stale-while-revalidate=59"
     } 
   };
 }
